@@ -12,6 +12,7 @@
 
 // Make this more dynamic in the future
 const countryCode = "US";
+const currentYear = new Date().getFullYear();
 
 document.addEventListener("DOMContentLoaded", () => {
   initialize();
@@ -24,10 +25,14 @@ function initialize() {
 function populateYearDropdown() {
   const yearDropdown = document.getElementById("year");
   let option;
-  for (let i = 1921; i <= 2100; ++i) {
+  // The API allows for years from 1921 until 2100
+  for (let i = 1925; i <= 2100; ++i) {
     option = document.createElement("option");
     option.value = i;
+    option.id = i;
     option.innerText = i;
     yearDropdown.appendChild(option);
   }
+  // Selects the current year
+  document.getElementById(String(currentYear)).selected = 'selected';
 }
