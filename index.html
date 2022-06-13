@@ -12,13 +12,17 @@
   <h2>Select any holiday/year from the dropdown and let's have some fun</h2>
 
   <!-- <label for="holidays">Choose a Holiday</label> -->
-  <select name="holidays" id="holidays">
-    <option value="default_holiday" disabled hidden>Choose a Holiday...</option>
-  </select>
+  <form action="" id="holiday_date_picker">
+    <select name="holidays" id="holidays">
+      <option value="default_holiday" disabled hidden>Choose a Holiday...</option>
+    </select>
+  
+    <select name="year" id="year">
+      <option value="default_year" disabled hidden>Choose a Year</option>
+    </select>
 
-  <select name="year" id="year">
-    <option value="default_year" disabled hidden>Choose a Year</option>
-  </select>
+    <button action="submit">Submit</button>
+  </form>
 
   <div id="holiday_return_date_div">
     <h3 id="holiday_return_date">Placeholder for Return Date</h3>
