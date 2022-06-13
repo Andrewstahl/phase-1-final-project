@@ -10,10 +10,24 @@
  *    - 
  */
 
+// Make this more dynamic in the future
+const countryCode = "US";
+
 document.addEventListener("DOMContentLoaded", () => {
   initialize();
 })
 
 function initialize() {
+  populateYearDropdown();
+}
 
+function populateYearDropdown() {
+  const yearDropdown = document.getElementById("year");
+  let option;
+  for (let i = 1921; i <= 2100; ++i) {
+    option = document.createElement("option");
+    option.value = i;
+    option.innerText = i;
+    yearDropdown.appendChild(option);
+  }
 }
