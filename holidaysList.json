@@ -1,0 +1,37 @@
+{
+  "holidays": [
+    {
+      "name": "New Year's Day"
+    },
+    {
+      "name": "Martin Luther King, Jr. Day"
+    },
+    {
+      "name": "Washington's Birthday"
+    },
+    {
+      "name": "Memorial Day"
+    },
+    {
+      "name": "Juneteenth"
+    },
+    {
+      "name": "Independence Day"
+    },
+    {
+      "name": "Labour Day"
+    },
+    {
+      "name": "Columbus Day"
+    },
+    {
+      "name": "Veterans Day"
+    },
+    {
+      "name": "Thanksgiving Day"
+    },
+    {
+      "name": "Christmas Day"
+    }
+  ]
+}
