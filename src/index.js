@@ -33,11 +33,22 @@ function initialize() {
      * the underlying text of the option, not the value. If we just did 
      * e.target.holidays.innerText, it would print out all of the 
      */
-    handleSubmit(e.target.holidays.options[e.target.holidays.selectedIndex].text, e.target.year.value);
+    // Do we need to take up memory for these? Certainly makes it more readable to use
+    // variable names
+    const yearSelected = e.target.year.value;
+    const holidaySelected = e.target.holidays.options[e.target.holidays.selectedIndex].text; 
+    
+    fetchData(yearSelected, handleSubmit, holidaySelected)
   })
 }
 
-function fetchData(year, callback) {
+/** 
+ * Get feedback on this - should I include an optional parameter in here?
+ * It helps this function work for handling submit but it's not needed 
+ * for other callback functions like populateHolidayDropdown. It will
+ * still run without a hitch, but still something to seek guidance on.
+*/
+function fetchData(year, callback, optionalParameter) {
   fetch("https://date.nager.at/api/v2/publicholidays/" + year + "/" + countryCode)
   .then(function(response) {
     if (response.status !== 200) {
@@ -46,7 +57,7 @@ function fetchData(year, callback) {
     }
     return response.json();
   })
-  .then(data => callback(data));
+  .then(data => callback(data, optionalParameter));
 }
 
 function populateHolidayDropdown(holidayData) {
@@ -95,14 +106,25 @@ function populateYearDropdown() {
   document.getElementById(String(currentYear)).selected = 'selected';
 }
 
-function handleSubmit(holiday, year) {
-  fetch("https://date.nager.at/api/v2/publicholidays/" + currentYear + "/" + countryCode)
-  .then(function(response) {
-    if (response.status !== 200) {
-      console.warn("Looks like we didn't get a good request. Request Code: " + response.status);
-      return
+function handleSubmit(holidayData, holidaySelected) {
+  const holidayReturnDate = document.getElementById("holiday_return_date");
+  const holidayReturnWeekend = document.getElementById("holiday_return_weekend");
+
+  const monthNames = ["January", "February", "March", "April", "May", "June",
+  "July", "August", "September", "October", "November", "December"
+  ];
+
+  holidayData.forEach(holiday => {
+    if (holiday.name === holidaySelected) {
+      // console.log(holiday.date);
+      const returnedDate = new Date(holiday.date)
+      const day = returnedDate.toLocaleString('default', {weekday: 'long'});
+      
+      const month = monthNames[returnedDate.getMonth()]
+      const date = returnedDate.getDate();
+      console.log(date);
+
     }
-    return response.json();
   })
-  .then(data => data.forEach)
+
 }
