@@ -10,7 +10,10 @@
  *    - 
  */
 
-// Make this more dynamic in the future
+/** 
+ * Makes this more dynamic in the future if we 
+ * want to include different countries in the mix 
+*/ 
 const countryCode = "US";
 const currentYear = new Date().getFullYear();
 
@@ -31,6 +34,18 @@ function initialize() {
      */
     handleSubmit(e.target.holidays.options[e.target.holidays.selectedIndex].text, e.target.year.value);
   })
+}
+
+function fetchData(year, callback) {
+  fetch("https://date.nager.at/api/v2/publicholidays/" + currentYear + "/" + countryCode)
+  .then(function(response) {
+    if (response.status !== 200) {
+      console.warn("Looks like we didn't get a good request. Request Code: " + response.status);
+      return
+    }
+    return response.json();
+  })
+  .then(data => callback(data));
 }
 
 function populateHolidayDropdown() {
@@ -77,7 +92,7 @@ function populateYearDropdown() {
   const yearDropdown = document.getElementById("year");
   let option;
 
-  // The API allows for years from 1921 until 2100
+  // The API allows for years from 1925 until 2100
   for (let i = 1925; i <= 2100; ++i) {
     option = document.createElement("option");
     option.value = i;
@@ -90,5 +105,13 @@ function populateYearDropdown() {
 }
 
 function handleSubmit(holiday, year) {
-
+  fetch("https://date.nager.at/api/v2/publicholidays/" + currentYear + "/" + countryCode)
+  .then(function(response) {
+    if (response.status !== 200) {
+      console.warn("Looks like we didn't get a good request. Request Code: " + response.status);
+      return
+    }
+    return response.json();
+  })
+  .then(data => data.forEach)
 }
