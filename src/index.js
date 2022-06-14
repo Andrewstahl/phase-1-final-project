@@ -22,7 +22,8 @@ document.addEventListener("DOMContentLoaded", () => {
 })
 
 function initialize() {
-  populateHolidayDropdown();
+  // Populates the holiday dropdown
+  fetchData(currentYear, populateHolidayDropdown);
   populateYearDropdown();
 
   document.getElementById("holiday_date_picker").addEventListener("submit", e => {
@@ -37,7 +38,7 @@ function initialize() {
 }
 
 function fetchData(year, callback) {
-  fetch("https://date.nager.at/api/v2/publicholidays/" + currentYear + "/" + countryCode)
+  fetch("https://date.nager.at/api/v2/publicholidays/" + year + "/" + countryCode)
   .then(function(response) {
     if (response.status !== 200) {
       console.warn("Looks like we didn't get a good request. Request Code: " + response.status);
@@ -48,7 +49,7 @@ function fetchData(year, callback) {
   .then(data => callback(data));
 }
 
-function populateHolidayDropdown() {
+function populateHolidayDropdown(holidayData) {
   const holidayDropdown = document.getElementById("holidays");
   // This is meant to find all non-alphanumeric characters in
   // the holiday name so we can add that to the ID/value of the option
@@ -57,17 +58,7 @@ function populateHolidayDropdown() {
   let option;
   const addedHolidays = [];
   
-  // Note: we're going to use the current year to populate the holidays.
-  // That way we always have the most up to date holiday setup
-  fetch("https://date.nager.at/api/v2/publicholidays/" + currentYear + "/" + countryCode)
-  .then(function(response) {
-    if (response.status !== 200) {
-      console.warn("Looks like we didn't get a good request. Request Code: " + response.status);
-      return
-    }
-    return response.json();
-  })
-  .then(data => data.forEach(holiday => {
+  holidayData.forEach(holiday => {
     /**
      * This handles if we've already added the holiday.
      * I noticed on a few of the holidays, like Good Friday,
@@ -85,7 +76,7 @@ function populateHolidayDropdown() {
       // Keep track of what we've added so we can prevent duplicates
       addedHolidays.push(holiday.name);
     }
-  }))
+  })
 }
 
 function populateYearDropdown() {
