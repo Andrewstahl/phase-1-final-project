@@ -114,17 +114,30 @@ function handleSubmit(holidayData, holidaySelected) {
   "July", "August", "September", "October", "November", "December"
   ];
 
-  holidayData.forEach(holiday => {
-    if (holiday.name === holidaySelected) {
-      // console.log(holiday.date);
+  // Could use a normal for loop to optimize for time
+  const len = holidayData.length;
+  let holiday;
+
+  for (let i = 0; i < len; ++i) {
+    // console.log(holidayData[i])
+    if (holidayData[i].name === holidaySelected) {
+      holiday = holidayData[i];
       const returnedDate = new Date(holiday.date)
       const day = returnedDate.toLocaleString('default', {weekday: 'long'});
       
       const month = monthNames[returnedDate.getMonth()]
       const date = returnedDate.getDate();
-      console.log(date);
+      
+      holidayReturnDate.innerText = `${day}, ${month} ${date}`;
 
+      if (day === "Monday" || day === "Friday") {
+        holidayReturnWeekend.innerText = "Congrats, you get an extra long weekend!"
+      } else {
+        holidayReturnWeekend.innerText = "Sorry, no extra time-off for you. Quit slacking!"
+      }
+      // Breaks the loop
+      return;
     }
-  })
-
+  }
+  
 }
