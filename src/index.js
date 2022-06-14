@@ -190,16 +190,16 @@ function handleDaysUntil() {
   // use Math.floor() to round down so we don't get any decimals
   const difference = Math.floor((holidayDateInSeconds - currentDateInSeconds) / (1000 * 3600 * 24))
   
-  const daysUntilReturnText = document.getElementById("calculate_days_until_return");
+  let daysUntilReturnText = document.getElementById("calculate_days_until_return");
 
   switch (true) {
     case (difference < 0):
       daysUntilReturnText.innerText = "Looks like we missed it. Better luck next year!";
       break;
-    case (difference = 0):
+    case (difference === 0):
       daysUntilReturnText.innerText = "That's today, happy holidays!";
       break;
-    case (difference = 1):
+    case (difference === 1):
       daysUntilReturnText.innerText = "That holiday is tomorrow. Make some preparations!";
       break;
     case (difference > 1):
