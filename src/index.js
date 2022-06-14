@@ -143,7 +143,10 @@ function handleSubmit(holidayData, holidaySelected) {
     if (holidayData[i].name === holidaySelected) {
       holiday = holidayData[i];
       const returnedDate = new Date(holiday.date)
-      
+      // We're adding this to a hidden p tag in the body so we 
+      // can pull it later on for finding the days until the holiday
+      document.getElementById("hidden_date").textContent = holiday.date;
+
       const day = returnedDate.toLocaleString('default', {weekday: 'long'});
       const month = monthNames[returnedDate.getMonth()]
       const date = returnedDate.getDate();
@@ -180,7 +183,27 @@ function fetchFact(month, day) {
 }
 
 function handleDaysUntil() {
-  const currentDate = new Date();
-  // const yearSelected = e.target.year.value;
-    
+  const currentDateInSeconds = new Date().getTime();
+  const holidayDateInSeconds = new Date(document.getElementById("hidden_date").textContent).getTime();
+  // We're first getting the seconds of each of the days, which will give us a clearer
+  // path towards figuring out the difference between the two days. Additionally, we'll
+  // use Math.floor() to round down so we don't get any decimals
+  const difference = Math.floor((holidayDateInSeconds - currentDateInSeconds) / (1000 * 3600 * 24))
+  
+  const daysUntilReturnText = document.getElementById("calculate_days_until_return");
+
+  switch (true) {
+    case (difference < 0):
+      daysUntilReturnText.innerText = "Looks like we missed it. Better luck next year!";
+      break;
+    case (difference = 0):
+      daysUntilReturnText.innerText = "That's today, happy holidays!";
+      break;
+    case (difference = 1):
+      daysUntilReturnText.innerText = "That holiday is tomorrow. Make some preparations!";
+      break;
+    case (difference > 1):
+      daysUntilReturnText.innerText = `That holiday is coming up in ${difference} days.`;
+      break;    
+  }
 }
