@@ -38,6 +38,7 @@ function initialize() {
   fetchData(currentYear, populateHolidayDropdown);
   populateYearDropdown();
 
+// Event Listener # 1
   document.getElementById("holiday_date_picker").addEventListener("submit", e => {
     e.preventDefault();
     /**
@@ -53,11 +54,16 @@ function initialize() {
       fetchData(yearSelected, handleSubmit, holidaySelected)
     } else {
       alert ("Please pick a valid holiday")
+      document.getElementById("holidays").className = "red-box";
     }
+
+// Event Listener # 2
+    document.getElementById("holidays").addEventListener("change", e => {
+      e.target.className = ""
+    })
   })
 
   document.getElementById("calculate_days_until_button").addEventListener("click", () => {
-    // e.preventDefault();
     handleDaysUntil();
   })
 }
