@@ -21,6 +21,16 @@ document.addEventListener("DOMContentLoaded", () => {
 function initialize() {
   populateHolidayDropdown();
   populateYearDropdown();
+
+  document.getElementById("holiday_date_picker").addEventListener("submit", e => {
+    e.preventDefault();
+    /**
+     * The code on getting the holidays is a bit longwinded but we need to get
+     * the underlying text of the option, not the value. If we just did 
+     * e.target.holidays.innerText, it would print out all of the 
+     */
+    handleSubmit(e.target.holidays.options[e.target.holidays.selectedIndex].text, e.target.year.value);
+  })
 }
 
 function populateHolidayDropdown() {
@@ -77,4 +87,8 @@ function populateYearDropdown() {
   }
   // Selects the current year
   document.getElementById(String(currentYear)).selected = 'selected';
+}
+
+function handleSubmit(holiday, year) {
+
 }
