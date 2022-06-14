@@ -1,4 +1,17 @@
 /**
+ * Next up:
+ * - Add return date to the hidden p tag on the page
+ * - Use that hidden date to calculate the days between today
+ *   and the selected holiday (use the milliseconds tactic)
+ * https://www.geeksforgeeks.org/how-to-calculate-the-number-of-days-between-two-dates-in-javascript/
+ * - If the day is in the past, we're going to say that we missed it
+ * - If the day is in the future, we'll use the calculation to see
+ *   how many days we have left to go (if it's one day, make sure the 
+ *   day is singular, not plural) 
+ * - Add a mouseover event to color the buttons differently
+ */
+
+/**
  * Basic setup:
  * - Upon loading, we need to populate the two dropdowns with years and holiday names
  *    - The holidays will be populated through the API but we can utilize a JSON server for this
@@ -36,11 +49,17 @@ function initialize() {
     // variable names
     const yearSelected = e.target.year.value;
     const holidaySelected = e.target.holidays.options[e.target.holidays.selectedIndex].text; 
-    
-    fetchData(yearSelected, handleSubmit, holidaySelected)
+    if (holidaySelected !== "Choose a Holiday...") {
+      fetchData(yearSelected, handleSubmit, holidaySelected)
+    } else {
+      alert ("Please pick a valid holiday")
+    }
   })
 
-  document.getElementById("calculate_days_until_button").addEventListener("click", handleDaysUntil)
+  document.getElementById("calculate_days_until_button").addEventListener("click", () => {
+    // e.preventDefault();
+    handleDaysUntil();
+  })
 }
 
 /** 
@@ -150,7 +169,6 @@ function handleSubmit(holidayData, holidaySelected) {
 // as one of the inputs but there's enough difference that we can 
 // keep it separate
 function fetchFact(month, day) {
-  console.log("fetching facts...")
   fetch ("https://api.wikimedia.org/feed/v1/wikipedia/en/onthisday/selected/" + month + "/" + day)
   .then(res => res.json())
   .then(data => {
@@ -163,6 +181,6 @@ function fetchFact(month, day) {
 
 function handleDaysUntil() {
   const currentDate = new Date();
-  const yearSelected = e.target.year.value;
+  // const yearSelected = e.target.year.value;
     
 }
