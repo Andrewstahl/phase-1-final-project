@@ -23,3 +23,9 @@ img {
   border-color: red;
   border-width: 2px;
 }
+
+.small-grey {
+  font-size: small;
+  font-style: italic;
+  color: #a09999;
+}
