@@ -23,7 +23,6 @@ function initialize() {
   populateYearDropdown();
 }
 
-
 function populateHolidayDropdown() {
   const holidayDropdown = document.getElementById("holidays");
   // This is meant to find all non-alphanumeric characters in
@@ -31,8 +30,11 @@ function populateHolidayDropdown() {
   const regex = /[\W_]+/g;
   // Save this here for when we have to create new options for the dropdown.
   let option;
+  const addedHolidays = [];
   
-  fetch("https://date.nager.at/api/v2/publicholidays/2022/" + countryCode)
+  // Note: we're going to use the current year to populate the holidays.
+  // That way we always have the most up to date holiday setup
+  fetch("https://date.nager.at/api/v2/publicholidays/" + currentYear + "/" + countryCode)
   .then(function(response) {
     if (response.status !== 200) {
       console.warn("Looks like we didn't get a good request. Request Code: " + response.status);
@@ -41,12 +43,23 @@ function populateHolidayDropdown() {
     return response.json();
   })
   .then(data => data.forEach(holiday => {
-    option = document.createElement("option");
-    let holidayWithoutSpecialCharacters = holiday.name.replace(regex, "").toLowerCase();
-    option.value = holidayWithoutSpecialCharacters;
-    option.id = holidayWithoutSpecialCharacters;
-    option.innerText = holiday.name;
-    holidayDropdown.appendChild(option);
+    /**
+     * This handles if we've already added the holiday.
+     * I noticed on a few of the holidays, like Good Friday,
+     * this is actually added two times by mistake.
+     */
+    if (addedHolidays.indexOf(holiday.name) === -1) {
+      option = document.createElement("option");
+      option.innerText = holiday.name;
+      
+      let holidayWithoutSpecialCharacters = holiday.name.replace(regex, "").toLowerCase();
+      option.value = holidayWithoutSpecialCharacters;
+      option.id = holidayWithoutSpecialCharacters;
+      
+      holidayDropdown.appendChild(option);
+      // Keep track of what we've added so we can prevent duplicates
+      addedHolidays.push(holiday.name);
+    }
   }))
 }
 
