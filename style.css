@@ -13,6 +13,10 @@ h2 {
   font-size: 18px;
 }
 
+h3 {
+  margin: 20px 0px 5px;
+}
+
 img {
   box-shadow: 3px 4px 10px #b79697;
   /* rounds out the edges */
@@ -22,6 +26,26 @@ img {
 .red-box {
   border-color: red;
   border-width: 2px;
+}
+
+div#on_this_day_div > p {
+  margin: 2px;
+}
+
+div#holiday_return_date_div > p {
+  margin: 2px 0px 20px;
+}
+
+#calculate_days_until_div {
+  margin: 25px;
+}
+
+h4 {
+  margin: 5px;
+}
+
+#wikipedia_fact {
+  padding: 0px 20%;
 }
 
 .small-grey {
