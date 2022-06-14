@@ -163,4 +163,6 @@ function fetchFact(month, day) {
 
 function handleDaysUntil() {
   const currentDate = new Date();
+  const yearSelected = e.target.year.value;
+    
 }
