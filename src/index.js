@@ -153,7 +153,12 @@ function fetchFact(month, day) {
   console.log("fetching facts...")
   fetch ("https://api.wikimedia.org/feed/v1/wikipedia/en/onthisday/selected/" + month + "/" + day)
   .then(res => res.json())
-  .then(data => console.log(data.selected.length));
+  .then(data => {
+    const len = data.selected.length;
+    
+    // We're going to populate the p element on the page with a random fact from wikipedia
+    document.getElementById("wikipedia_fact").innerText = data.selected[Math.floor(Math.random() * (len + 1))].text
+  });
 }
 
 function handleDaysUntil() {
