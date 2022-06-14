@@ -1,4 +1,3 @@
-// save for grabbing the holiday names - "https://date.nager.at/api/v2/publicholidays/2022/US"
 /**
  * Basic setup:
  * - Upon loading, we need to populate the two dropdowns with years and holiday names
@@ -40,6 +39,8 @@ function initialize() {
     
     fetchData(yearSelected, handleSubmit, holidaySelected)
   })
+
+  document.getElementById("calculate_days_until_button").addEventListener("click", handleDaysUntil)
 }
 
 /** 
@@ -123,8 +124,8 @@ function handleSubmit(holidayData, holidaySelected) {
     if (holidayData[i].name === holidaySelected) {
       holiday = holidayData[i];
       const returnedDate = new Date(holiday.date)
-      const day = returnedDate.toLocaleString('default', {weekday: 'long'});
       
+      const day = returnedDate.toLocaleString('default', {weekday: 'long'});
       const month = monthNames[returnedDate.getMonth()]
       const date = returnedDate.getDate();
       
@@ -135,9 +136,26 @@ function handleSubmit(holidayData, holidaySelected) {
       } else {
         holidayReturnWeekend.innerText = "Sorry, no extra time-off for you. Quit slacking!"
       }
+
+      // Remember - the first month/day start at 0
+      fetchFact(returnedDate.getMonth() + 1, returnedDate.getDate() + 1)
+      
       // Breaks the loop
       return;
     }
-  }
-  
+  } 
+}
+
+// We can consolidate this with the other fetch by making the url
+// as one of the inputs but there's enough difference that we can 
+// keep it separate
+function fetchFact(month, day) {
+  console.log("fetching facts...")
+  fetch ("https://api.wikimedia.org/feed/v1/wikipedia/en/onthisday/selected/" + month + "/" + day)
+  .then(res => res.json())
+  .then(data => console.log(data.selected.length));
+}
+
+function handleDaysUntil() {
+  const currentDate = new Date();
 }
