@@ -1,14 +1,16 @@
-# Andrew Stahl's Phase 1 Final Project
+# Andrew Stahl's Phase 1 Final Project: "Stahl Holiday Picker"
 
 This is the repository of my Phase 1 final project for Flatiron School.
 
 ## Goal
 The goal of this project is leverage my knowledge in HTML, CSS, JavaScript, and APIs to create a single-page application.
 
+
 ## Project Overview
 This page prompts the user to pick a US holiday and year from dropdowns. Once they submit, they will see the date and day of that holiday as well as a fun fact about that day in history (excluding the year). Finally, there will be a button at the bottom that will allow the user to see how many days it will be until we reach that holiday. The response they get will be different depending on if the holiday had passed, if today is that holiday, or if the holiday is in the future.
 
 I have chosen two open source APIs to complete this project. The first is the [Nager.Date API](https://date.nager.at), which populates the first dropdown upon page load and will look for the applicable holiday date upon form submission. The second is the [Wikipedia API](https://api.wikimedia.org/wiki/API_reference/Feed/On_this_day), which will pull in a fun fact on that day in history after the holiday has been submitted. 
+
 
 ## Outline of Responsibilities
 Here's a quick outline of the responsibilities for this project, henceforth known as the SHP (Stahl Holiday Picker):
