@@ -2,6 +2,14 @@
 
 This is the repository of my Phase 1 final project for Flatiron School.
 
+## Goal
+The goal of this project is leverage my knowledge in HTML, CSS, JavaScript, and APIs to create a single-page application.
+
+## Project Overview
+This page prompts the user to pick a US holiday and year from dropdowns. Once they submit, they will see which day that 
+
+I have chosen two open source APIs to complete this 
+
 ## Outline of Responsibilities
 For this project, we are going to using the [Nager.Date API](https://date.nager.at) to pull in a list of US public holidays. The single-page application will allow the user to pick.
 
@@ -19,6 +27,9 @@ For this project, we are going to using the [Nager.Date API](https://date.nager.
 ## Introduction
 Here is a placeholder for the introduction of the README.
 
+## Potential Future Developments
+- Adjustment for different countries
+- Building a local server, which would need to store the holiday dates for 100 years worth of data
 
 ## Resources
 - [Nager.Date API](https://date.nager.at)
