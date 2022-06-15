@@ -56,6 +56,10 @@ function initialize() {
  * still run without a hitch, but still something to seek guidance on.
 */
 function fetchData(year, callback, optionalParameter) {
+  // I could also use a fetch request for a local server, but this will
+  // only work for 2022 holidays for the time being. I could also work
+  // to include other years eventually
+  // fetch("http://localhost:3000/holidays")
   fetch("https://date.nager.at/api/v2/publicholidays/" + year + "/" + countryCode)
   .then(function(response) {
     if (response.status !== 200) {
