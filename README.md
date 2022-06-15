@@ -11,7 +11,7 @@ This page prompts the user to pick a US holiday and year from dropdowns. Once th
 
 I have chosen two open source APIs to complete this project. The first is the [Nager.Date API](https://date.nager.at), which populates the first dropdown upon page load and will look for the applicable holiday date upon form submission. The second is the [Wikipedia API](https://api.wikimedia.org/wiki/API_reference/Feed/On_this_day), which will pull in a fun fact on that day in history after the holiday has been submitted. 
 
-[](https://github.com/Andrewstahl/phase-1-final-project/blob/main/media/StahlHolidayPicker.gif)
+![](https://github.com/Andrewstahl/phase-1-final-project/blob/main/media/StahlHolidayPicker.gif)
 
 ## Outline of Responsibilities
 Here's a quick outline of the responsibilities for this project, henceforth known as the SHP (Stahl Holiday Picker):
