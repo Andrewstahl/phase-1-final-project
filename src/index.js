@@ -165,7 +165,7 @@ function handleSubmit(holidayData, holidaySelected) {
   
   // Handles the scenario if we looked for a holiday and it didn't show up
   if (!found) {
-    holidayReturnDate.innerText = "Sorry, this holiday wasn't found during this year."
+    holidayReturnDate.innerText = "Sorry, this holiday wasn't found during that year."
     holidayReturnWeekend.innerText = "Try again!"
   }
 }
