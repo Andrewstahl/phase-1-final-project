@@ -1,27 +1,3 @@
-/**
- * Next up:
- * - Add return date to the hidden p tag on the page
- * - Use that hidden date to calculate the days between today
- *   and the selected holiday (use the milliseconds tactic)
- * https://www.geeksforgeeks.org/how-to-calculate-the-number-of-days-between-two-dates-in-javascript/
- * - If the day is in the past, we're going to say that we missed it
- * - If the day is in the future, we'll use the calculation to see
- *   how many days we have left to go (if it's one day, make sure the 
- *   day is singular, not plural) 
- * - Add a mouseover event to color the buttons differently
- */
-
-/**
- * Basic setup:
- * - Upon loading, we need to populate the two dropdowns with years and holiday names
- *    - The holidays will be populated through the API but we can utilize a JSON server for this
- * - Event listeners:
- *    - Submit button to populate dates
- *    - Click button to calculate the days until we hit that holiday
- * - Separate functions
- *    - 
- */
-
 /** 
  * Makes this more dynamic in the future if we 
  * want to include different countries in the mix 
@@ -29,6 +5,7 @@
 const countryCode = "US";
 const currentYear = new Date().getFullYear();
 
+// Event Listener # 0
 document.addEventListener("DOMContentLoaded", () => {
   initialize();
 })
@@ -41,6 +18,7 @@ function initialize() {
 // Event Listener # 1
   document.getElementById("holiday_date_picker").addEventListener("submit", e => {
     e.preventDefault();
+    document.getElementById("calculate_days_until_return").innerText = "";
     /**
      * The code on getting the holidays is a bit longwinded but we need to get
      * the underlying text of the option, not the value. If we just did 
@@ -59,13 +37,23 @@ function initialize() {
 
 // Event Listener # 2
     document.getElementById("holidays").addEventListener("change", e => {
+      // This would remove the red-box class name from this element if it exists
       e.target.className = ""
     })
   })
 
+// Event Listener # 3
   document.getElementById("calculate_days_until_button").addEventListener("click", () => {
     handleDaysUntil();
   })
+
+  Array.from(document.getElementsByClassName("grey_hover_button")).forEach(button => () => {
+    button.addEventListener("mousedown", () => {
+      button.style.color = "#fff";
+    })
+  })
+  // console.log(buttons);
+  // .addEventListener("mousedown", () => console.log("mousedown"))
 }
 
 /** 
@@ -94,7 +82,8 @@ function populateHolidayDropdown(holidayData) {
   // Save this here for when we have to create new options for the dropdown.
   let option;
   const addedHolidays = [];
-  
+
+// Array method
   holidayData.forEach(holiday => {
     /**
      * This handles if we've already added the holiday.
