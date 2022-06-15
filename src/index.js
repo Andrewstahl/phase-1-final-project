@@ -129,10 +129,14 @@ function handleSubmit(holidayData, holidaySelected) {
   // Could use a normal for loop to optimize for time
   const len = holidayData.length;
   let holiday;
+  let found;
 
   for (let i = 0; i < len; ++i) {
     // console.log(holidayData[i])
     if (holidayData[i].name === holidaySelected) {
+      // This will help us keep track of whether we're returning a holiday
+      found = true;
+      
       holiday = holidayData[i];
       const returnedDate = new Date(holiday.date)
       // We're adding this to a hidden p tag in the body so we 
@@ -158,6 +162,12 @@ function handleSubmit(holidayData, holidaySelected) {
       return;
     }
   } 
+  
+  // Handles the scenario if we looked for a holiday and it didn't show up
+  if (!found) {
+    holidayReturnDate.innerText = "Sorry, this holiday wasn't found during this year."
+    holidayReturnWeekend.innerText = "Try again!"
+  }
 }
 
 // We can consolidate this with the other fetch by making the url
