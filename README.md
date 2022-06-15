@@ -1,4 +1,4 @@
-# Andrew Stahl's Phase 1 Final Project: "Stahl Holiday Picker"
+# "Stahl Holiday Picker"
 
 This is the repository of my Phase 1 final project for Flatiron School.
 
