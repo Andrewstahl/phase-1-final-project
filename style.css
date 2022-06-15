@@ -33,7 +33,7 @@ div#on_this_day_div > p {
 }
 
 div#holiday_return_date_div > p {
-  margin: 2px 0px 20px;
+  margin: 0px 0px 20px;
 }
 
 #calculate_days_until_div {
@@ -52,4 +52,8 @@ h4 {
   font-size: small;
   font-style: italic;
   color: #a09999;
+}
+
+.grey_hover_button:active {
+  background-color: #d7dada;
 }

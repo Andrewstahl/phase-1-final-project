@@ -31,8 +31,8 @@ function initialize() {
     if (holidaySelected !== "Choose a Holiday...") {
       fetchData(yearSelected, handleSubmit, holidaySelected)
     } else {
-      alert ("Please pick a valid holiday")
       document.getElementById("holidays").className = "red-box";
+      alert ("Please pick a valid holiday")
     }
 
 // Event Listener # 2
@@ -47,13 +47,6 @@ function initialize() {
     handleDaysUntil();
   })
 
-  Array.from(document.getElementsByClassName("grey_hover_button")).forEach(button => () => {
-    button.addEventListener("mousedown", () => {
-      button.style.color = "#fff";
-    })
-  })
-  // console.log(buttons);
-  // .addEventListener("mousedown", () => console.log("mousedown"))
 }
 
 /** 
