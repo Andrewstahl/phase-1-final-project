@@ -35,6 +35,10 @@ Here's a quick outline of the responsibilities for this project, henceforth know
 - This is currently just coded for US holidays. Nager Date API does allow for other holidays and the code is dynamic enough to support this change. This could be user prompted as well, where they would first select their country code, the SHP could fetch all possible holidays from that country to populate the second dropdown, and then the rest of the program would work the same way.
 - Building a local server using json-server is also workable within this project. I have a json file attached to this repository with information on US holiday dates in 2022. For this to be as effective as the API route, we would need to store 100 years worth of data and house data for other countries, too.
 
+## Additional Posts
+[YouTube walkthrough] (https://youtu.be/7PzUS3bsAXg)
+[Medium blog post on fetch requests with APIs](https://medium.com/@andrewstahl96/using-javascript-to-fetch-data-with-apis-fe7a64065822)
+
 ## Resources
 - [Nager.Date API](https://date.nager.at)
 - [Wikipedia API](https://api.wikimedia.org/wiki/API_reference/Feed/On_this_day)
