@@ -152,7 +152,7 @@ function handleSubmit(holidayData, holidaySelected) {
       if (day === "Monday" || day === "Friday") {
         holidayReturnWeekend.innerText = "Congrats, you get an extra long weekend!"
       } else {
-        holidayReturnWeekend.innerText = "Sorry, no extra time-off for you. Quit slacking!"
+        holidayReturnWeekend.innerText = "Sorry, no extra long weekend for you!"
       }
 
       // Remember - the first month/day start at 0
