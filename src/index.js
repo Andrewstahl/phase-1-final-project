@@ -47,6 +47,12 @@ function initialize() {
     handleDaysUntil();
   })
 
+  document.getElementById("user-comments-form").addEventListener("submit", e => {
+    e.preventDefault();
+    handleSubmitComment(document.getElementById("user-comments-input").value);
+    e.target.reset();
+  })
+
 }
 
 /** 
@@ -208,4 +214,10 @@ function handleDaysUntil() {
       daysUntilReturnText.innerText = `That holiday is coming up in ${difference} days.`;
       break;    
   }
+}
+
+function handleSubmitComment(comment) {
+  const p = document.createElement("p");
+  p.innerText = comment;
+  document.getElementById("user-comments-form").appendChild(p);
 }
