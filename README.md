@@ -3,7 +3,7 @@
 This is the repository of my Phase 1 final project for Flatiron School.
 
 ## Goal
-The goal of this project is leverage my knowledge in HTML, CSS, JavaScript, and APIs to create a single-page application.
+The goal of this project is to leverage my knowledge in HTML, CSS, JavaScript, and APIs to create a single-page application.
 
 
 ## Project Overview
