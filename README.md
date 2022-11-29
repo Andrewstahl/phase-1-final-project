@@ -37,7 +37,7 @@ Here's a quick outline of the responsibilities for this project, henceforth know
 
 ## Additional Posts
 - [YouTube walkthrough](https://youtu.be/7PzUS3bsAXg)
-- [Medium blog post on fetch requests with APIs](https://medium.com/@andrewstahl96/using-javascript-to-fetch-data-with-apis-fe7a64065822)
+- [Medium blog post on fetch requests with APIs](https://medium.com/@andrewstahlsoftware/using-javascript-to-fetch-data-with-apis-fe7a64065822)
 
 ## Resources
 - [Nager.Date API](https://date.nager.at)
